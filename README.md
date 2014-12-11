@@ -1,4 +1,4 @@
-### To Predict the <movie review score> by <comment>
+### To Predict the "movie review score" by "comment"
 
 1. pre_proc.py - gen_word_list.py - find_english.py
 2. pre_translate.py - gen_word_list.py
