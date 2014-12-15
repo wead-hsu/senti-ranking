@@ -44,4 +44,4 @@ def pre_proc(ifn, efn, tfn, ofn):
 	of.write(json.dumps(comments))
 
 if __name__ == '__main__':
-	pre_proc('../data/raw-data/train.json', '../data/english/english-words' ,'../data/english/english-translate', '../data/raw-data/train-translate.json')
+	pre_proc('../data/raw-data/test.json', '../data/english/english-words' ,'../data/english/english-translate', '../data/raw-data/test-translate.json')

@@ -49,4 +49,4 @@ def print_comments(comments):
 		of.write('\n')
 
 if __name__ == '__main__':
-	pre_proc('../data/raw-data/train.xml', '../data/raw-data/train.json')
+	pre_proc('../data/raw-data/test.xml', '../data/raw-data/test.json')

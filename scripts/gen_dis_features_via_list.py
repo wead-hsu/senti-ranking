@@ -113,8 +113,8 @@ def gen_features_via_list(ifn, mfn, efn, dfn, ofn):
 		for word in likelihoods:
 			of.write(str(word) + ' ')
 
-		of.write(comment['rating'])
+		of.write('?')
 		
 		of.write('\n')
 
-gen_features_via_list('../data/raw-data/train-translate.json', '../data/senti-words/mutals-and-adj-slt', '../data/senti-words/sel-ext-senti-words', '../data/feature/director-score', '../data/feature/word-feature-not-ext-slt-norm')
+gen_features_via_list('../data/raw-data/test-translate.json', '../data/senti-words/mutals-and-adj-slt', '../data/senti-words/sel-ext-senti-words', '../data/feature/director-score', '../data/feature/word-feature-not-ext-slt-norm-test')
