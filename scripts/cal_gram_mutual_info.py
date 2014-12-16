@@ -89,7 +89,7 @@ def cal_unigram_mutal_infos(ifn, ufn, ofn):
 	
 	for word in unigrams:
 		# x = 1, which indicates that word does appear
-		for j in range(1,6):
+		for i in range(1,6):
 			px_1y = cnt[str(i)][word]/total_cnt
 			px_1 = cnt_unigram[word]/total_cnt
 			py = cnt_rating[str(i)]/total_cnt
@@ -150,7 +150,7 @@ def cal_bigram_mutal_infos(ifn, bfn, ofn):
 	
 	for word in bigrams:
 		# x = 1, which indicates that word does appear
-		for j in range(1,6):
+		for i in range(1,6):
 			px_1y = cnt[str(i)][word]/total_cnt
 			px_1 = cnt_bigram[word]/total_cnt
 			py = cnt_rating[str(i)]/total_cnt
@@ -211,7 +211,7 @@ def cal_trigram_mutal_infos(ifn, bfn, ofn):
 	
 	for word in trigrams:
 		# x = 1, which indicates that word does appear
-		for j in range(1,6):
+		for i in range(1,6):
 			px_1y = cnt[str(i)][word]/total_cnt
 			px_1 = cnt_trigram[word]/total_cnt
 			py = cnt_rating[str(i)]/total_cnt
@@ -227,6 +227,6 @@ def cal_trigram_mutal_infos(ifn, bfn, ofn):
 	for item in sorted_mutals:
 		of.write(item[0] + '\t' + str(item[1]) + '\t' + trigram_cnt[item[0]])
 
-cal_unigram_mutal_infos('../data/raw-data/train-translate.json', '../data/word-list/unigram', '../data/mutal-info/rating-unigram')
-cal_bigram_mutal_infos('../data/raw-data/train-translate.json', '../data/word-list/bigram', '../data/mutal-info/rating-bigram')
-cal_trigram_mutal_infos('../data/raw-data/train-translate.json', '../data/word-list/trigram', '../data/mutal-info/rating-trigram')
+cal_unigram_mutal_infos('../data/raw-data/train-translate.json', '../data/word-list/unigram', '../data/mutal-info/rating-unigram-re')
+cal_bigram_mutal_infos('../data/raw-data/train-translate.json', '../data/word-list/bigram', '../data/mutal-info/rating-bigram-re')
+cal_trigram_mutal_infos('../data/raw-data/train-translate.json', '../data/word-list/trigram', '../data/mutal-info/rating-trigram-re')
