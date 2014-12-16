@@ -33,14 +33,31 @@ def load_director_score(ifn):
 		movie_score[line.split('\t')[0]] = line.split('\t')[3]
 		line =  sf.readline()
 	return director_score, movie_score
-	
 
-def gen_features_via_list(ifn, mfn, efn, dfn, ofn):
+def load_rating_distribution(ifn):
+	sf = codecs.open(ifn, 'r', 'utf-8')
+	line = sf.readline()
+	rating_distribution = {}
+	while line:
+		rating_distribution[int(line.split()[0]) - 1] = float(line.split()[1])
+		line = sf.readline()
+	
+	total = 0.0
+	for key in rating_distribution.keys():
+		total += rating_distribution[key]
+	
+	for key in rating_distribution.keys():
+		rating_distribution[key] = rating_distribution[key]/total
+
+	return rating_distribution
+
+def gen_features_via_list(ifn, mfn, efn, dfn,rfn,  ofn):
 	sf = codecs.open(ifn, 'r', 'utf-8')
 	line = sf.readline()
 	comments = json.loads(line)
 	of = codecs.open(ofn, 'w', 'utf-8')
 	director_score, movie_score = load_director_score(dfn)
+	rating_distribution = load_rating_distribution(rfn)
 
 	mutals = load_distributions(mfn)
 	extends = load_distributions(efn)
@@ -85,8 +102,10 @@ def gen_features_via_list(ifn, mfn, efn, dfn, ofn):
 			for i in range(5):
 				if feature[1]:
 					likelihoods[4-i] += np.log((distribution[i]+1)/(distribution[5]+5))
+					likelihoods[4-i] -= np.log(rating_distribution[i])
 				else:
 					likelihoods[i] += np.log((distribution[i]+1)/(distribution[5]+5))
+					likelihoods[i] -= np.log(rating_distribution[i])
 		
 		
 		movie_id = comment['movie_id']
@@ -117,4 +136,4 @@ def gen_features_via_list(ifn, mfn, efn, dfn, ofn):
 		
 		of.write('\n')
 
-gen_features_via_list('../data/raw-data/test-translate.json', '../data/senti-words/mutals-and-adj-slt', '../data/senti-words/sel-ext-senti-words', '../data/feature/director-score', '../data/feature/word-feature-not-ext-slt-norm-test')
+gen_features_via_list('../data/raw-data/test-translate.json', '../data/senti-words/mutals-and-adj-slt', '../data/senti-words/sel-ext-senti-words', '../data/feature/director-score', '../data/feature/rating-cnt', '../data/feature/mle-not-ext-slt-norm-test')
