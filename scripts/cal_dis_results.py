@@ -19,27 +19,28 @@ def cal_results(ifn):
 		
 		answer = 1
 
-		if numbers[2] == 0:
+		if numbers[3] == 0:
 			answer = numbers[0]
 		else:
-			max_idx = 2
-			sec_idx = 2
-			for i in range(2,7):
+			max_idx = 3
+			sec_idx = 3
+			for i in range(3,8):
 				if numbers[max_idx] < numbers[i]:
 					sec_idx = max_idx
 					max_idx = i
 				elif numbers[sec_idx] < numbers[i]:
 					sec_idx = i
 
-			if np.abs(max_idx - 1 - numbers[0]) > 2.5:
-				answer = numbers[0]
-			else:
-				answer = max_idx - 1
+			answer = max_idx - 2
+			#if np.abs(max_idx - 2 - numbers[0]) > 2.5:
+			#	answer = numbers[0]
+			#else:
+			#	answer = max_idx - 2
 			
-		error += (numbers[7] - answer) * ( numbers[7] - answer)
+		error += (numbers[8] - answer) * ( numbers[8] - answer)
 		print answer
 		line = sf.readline()
 	
 	print error/line_cnt
 
-cal_results('../data/feature/word-feature-not-ext-slt')
+cal_results('../data/feature/map-not-ext-slt-norm')

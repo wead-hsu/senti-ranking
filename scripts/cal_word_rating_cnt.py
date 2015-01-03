@@ -7,20 +7,25 @@ import sys
 
 def cal_director_score(ifn):
 	sf = codecs.open(ifn, 'r', 'utf-8')
-	comments = json.loads(sf.readline())
+	line = sf.readline()
 	
 	rating = {}
 	for i in range(1,6):
-		rating[str(i)] = 0
+		rating[str(i)] = i
 
-	for comment in comments:
-		rating[comment['rating']] += 1
+	while line:
+		words = line.split()
+		for i in range(1,6):
+			rating[str(i)] += int(words[i])
+
+		line = sf.readline()
 	
 	total = 0
 	for key in rating.keys():
 		total += rating[key]
+
 	for key in rating.keys():
-		rating[key] = rating[key] * 1.0 / total
+		rating[key] = rating[key] * 1.0 /total
 		print key, rating[key]
 
-cal_director_score('../data/raw-data/train-translate.json')
+cal_director_score('../data/senti-words/mutals-and-adj-slt')
